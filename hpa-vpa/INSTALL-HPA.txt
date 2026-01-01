@@ -1,0 +1,21 @@
+4️⃣ Deploy a Sample App (nginx)
+kubectl create deployment nginx --image=nginx
+kubectl expose deployment nginx --port=80 --target-port=80
+kubectl get pods -o wide
+kubectl get svc -o wide
+
+
+4️⃣ HPA (Horizontal Pod Autoscaler)
+🔹 Create HPA
+kubectl autoscale deployment nginx --cpu=50% --min=1 --max=5
+kubectl get hpa
+🔹 Test HPA
+
+Generate load to test scaling:
+kubectl run -i --tty load-generator --image=busybox /bin/sh
+# Inside pod
+while true; do wget -q -O- http://nginx.default.svc.cluster.local; done
+
+Observe HPA scaling:
+kubectl get hpa -w
+kubectl get pods -o wide
