@@ -20,25 +20,6 @@ kubectl apply -f nginx-vpa.yaml
 kubectl describe vpa nginx-vpa
 
 
-
-6️⃣ HPA vs VPA Overview
-Feature	HPA	VPA
-Scales	Pod count	Pod resources
-Scaling type	Horizontal	Vertical
-Needs metrics-server	✅	❌
-Pod restart	❌	✅
-Traffic handling	Excellent	Poor
-Stateful apps	❌	✅
-Production usage	Very common	Selective
-
-⚠️ Important: Avoid using HPA + VPA on CPU for the same deployment, they may conflict.
-
-Safe combination:
-
-HPA on CPU
-
-VPA on Memory only
-
 7️⃣ Example Use Cases
 
 Web App / Nginx / API → HPA
